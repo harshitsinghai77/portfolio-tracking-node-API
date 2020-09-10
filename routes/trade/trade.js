@@ -60,7 +60,7 @@ router.patch("/:trade_id/buys", async (req, res) => {
     let current_trade = await Trade.findById(trade_id);
     if (!current_trade)
       return res.sendNotFound(
-        response(false, "Trade cannot be found in the Portfolio", current_trade)
+        response(false, "Trade not found", current_trade)
       );
 
     const { shares, buyPrice } = req.body;
@@ -96,7 +96,11 @@ router.patch("/:trade_id/sells", async (req, res) => {
 
     const trade_id = req.params.trade_id;
     let current_trade = await Trade.findById(trade_id);
-    if (!current_trade) return res.sendNotFound();
+
+    if (!current_trade)
+      return res.sendNotFound(
+        response(false, "Trade not found", current_trade)
+      );
 
     const { shares } = req.body;
     const currentShare = current_trade.shares;

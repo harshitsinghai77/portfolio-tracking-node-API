@@ -34,7 +34,7 @@ module.exports = () => {
     };
 
     res.sendNotFound = function (responseObject = {}) {
-      return this.status(404).json((responseObject = {}));
+      return this.status(404).json(responseObject);
     };
 
     next();
