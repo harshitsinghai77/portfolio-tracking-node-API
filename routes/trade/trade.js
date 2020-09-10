@@ -23,7 +23,6 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const { error } = NewTradeValidator(req.body);
-    console.log(error);
     if (error) return res.sendBadRequestError(error);
 
     const { tickerSymbol, avgBuyPrice, shares } = req.body;

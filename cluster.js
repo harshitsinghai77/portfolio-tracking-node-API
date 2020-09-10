@@ -4,8 +4,7 @@ if (cluster.isMaster) {
   console.log("Main master thread");
 
   let cpuCount = require("os").cpus().length;
-  console.log(cpuCount);
-
+  
   for (let i = 0; i < cpuCount; i += 1) {
     cluster.fork();
   }

@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const serverResponseHandler = require("./middleware/serverResponseHandler");
+const contentTypeHandler = require("./middleware/contentTypeHandler");
 
 const Trades = require("./routes/trade/trade");
 const Portfolio = require("./routes/portfolio/portfolio");
@@ -36,6 +37,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Custome middleware
+app.use(contentTypeHandler());
 app.use(serverResponseHandler());
 
 //Routes
