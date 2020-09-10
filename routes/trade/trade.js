@@ -61,7 +61,7 @@ router.patch("/:trade_id/buys", async (req, res) => {
       return res.sendNotFound(
         response(
           false,
-          `Trade with ${trade_id} not found in portfolio`,
+          `Trade with id ${trade_id} not found in portfolio`,
           current_trade
         )
       );
@@ -104,7 +104,7 @@ router.patch("/:trade_id/sells", async (req, res) => {
       return res.sendNotFound(
         response(
           false,
-          `Trade with ${trade_id} not found in portfolio`,
+          `Trade with id ${trade_id} not found in portfolio`,
           current_trade
         )
       );
@@ -148,8 +148,8 @@ router.delete("/:trade_id", async (req, res) => {
       return res.sendNotFound(
         response(
           false,
-          `Trade with ${trade_id} not found in portfolio`,
-          current_trade
+          `Trade with id ${trade_id} not found in portfolio`,
+          null
         )
       );
     res.sendSuccess(response(true, "Trade deleted succesfully", deletedTicker));
