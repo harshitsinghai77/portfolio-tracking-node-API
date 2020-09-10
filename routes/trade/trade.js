@@ -59,7 +59,11 @@ router.patch("/:trade_id/buys", async (req, res) => {
     let current_trade = await Trade.findById(trade_id);
     if (!current_trade)
       return res.sendNotFound(
-        response(false, "Trade not found", current_trade)
+        response(
+          false,
+          `Trade with ${trade_id} not found in portfolio`,
+          current_trade
+        )
       );
 
     const { shares, buyPrice } = req.body;
@@ -98,7 +102,11 @@ router.patch("/:trade_id/sells", async (req, res) => {
 
     if (!current_trade)
       return res.sendNotFound(
-        response(false, "Trade not found", current_trade)
+        response(
+          false,
+          `Trade with ${trade_id} not found in portfolio`,
+          current_trade
+        )
       );
 
     const { shares } = req.body;
@@ -136,7 +144,14 @@ router.delete("/:trade_id", async (req, res) => {
     const trade_id = req.params.trade_id;
     const deletedTicker = await Trade.findByIdAndDelete(trade_id);
 
-    if (!deletedTicker) return res.sendNotFound();
+    if (!deletedTicker)
+      return res.sendNotFound(
+        response(
+          false,
+          `Trade with ${trade_id} not found in portfolio`,
+          current_trade
+        )
+      );
     res.sendSuccess(response(true, "Trade deleted succesfully", deletedTicker));
   } catch (err) {
     console.log(err);
